@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -29,7 +29,7 @@ namespace TutorialBot
                 .AddSingleton(_commands)
                 .BuildServiceProvider();
 
-            string token = "TOKEN_HERE";
+            string token = "NzI0OTk1NTI4OTc4NDY0ODU4.XvISyw.xg1eSo01vjS7aPkl4bORxu77DQE";
 
             _client.Log += _client_Log;
 
@@ -66,6 +66,7 @@ namespace TutorialBot
             {
                 var result = await _commands.ExecuteAsync(context, argPos, _services);
                 if (!result.IsSuccess) Console.WriteLine(result.ErrorReason);
+                if (result.Error.Equals(CommandError.UnmetPrecondition)) await message.Channel.SendMessageAsync(result.ErrorReason);
             }
         }
     }
